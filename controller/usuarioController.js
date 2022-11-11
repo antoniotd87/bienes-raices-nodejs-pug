@@ -52,34 +52,34 @@ const registrar = async (req, res) => {
   const { nombre, email, password } = req.body;
 
   // Verificar que el usuario no este duplicado
-  const existeUsuario = await Usuario.findOne({
-    where: { email },
-  });
-  if (existeUsuario) {
-    return res.render("auth/registro", {
-      pagina: "Crear Cuenta",
-      errores: [{ msg: "El usuario esta registrado" }],
-      usuario: {
-        nombre: req.body.nombre,
-        email: req.body.email,
-      },
-      csrfToken: req.csrfToken(),
-    });
-  }
+  // const existeUsuario = await Usuario.findOne({
+  //   where: { email },
+  // });
+  // if (existeUsuario) {
+  //   return res.render("auth/registro", {
+  //     pagina: "Crear Cuenta",
+  //     errores: [{ msg: "El usuario esta registrado" }],
+  //     usuario: {
+  //       nombre: req.body.nombre,
+  //       email: req.body.email,
+  //     },
+  //     csrfToken: req.csrfToken(),
+  //   });
+  // }
 
   //Almacenar un usuario
-  const usuario = await Usuario.create({
-    nombre,
-    email,
-    password,
-    token: generarId(),
-  });
+  // const usuario = await Usuario.create({
+  //   nombre,
+  //   email,
+  //   password,
+  //   token: generarId(),
+  // });
 
   // envia Email de Confirmacion
   emailRegistro({
-    nombre: usuario.nombre,
-    email: usuario.email,
-    token: usuario.token,
+    nombre: nombre,
+    email: email,
+    token: generarId(),
   });
 
   res.render("templates/mensaje", {

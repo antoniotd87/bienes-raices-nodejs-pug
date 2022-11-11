@@ -18,13 +18,13 @@ app.use(cookieParser());
 app.use(csrf({ cookie: true }));
 
 // Conexion a la base de datos
-try {
+/* try {
   await db.authenticate();
   db.sync();
   console.log("Conexion Correcta a la Base de datos");
 } catch (error) {
   console.log(error);
-}
+} */
 
 // Habilitar Pug
 app.set("view engine", "pug");
